@@ -29,6 +29,9 @@ steps:
     command: 'build'
     projects: '**/*.csproj'
     arguments: '--configuration Release'
+    
+- script: dotnet publish --configuration Release --output $(Build.ArtifactStagingDirectory)
+  displayName: 'Publish the application'
 
 - task: PublishBuildArtifacts@1
   inputs:
