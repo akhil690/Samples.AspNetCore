@@ -42,7 +42,7 @@ steps:
   displayName: 'Zip artifacts'
   inputs:
     rootFolderOrFile: '$(Build.ArtifactStagingDirectory)'
-    includeRootFolder: false
+    includeRootFolder: true
     archiveType: 'zip'
     archiveFile: '$(Build.ArtifactStagingDirectory)/published-app.zip'
     replaceExistingArchive: true
