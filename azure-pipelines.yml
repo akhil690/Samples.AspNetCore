@@ -30,14 +30,22 @@ steps:
     projects: '**/*.csproj'
     arguments: '--configuration Release'
     
-- task: DotNetCoreCLI@2
-  displayName: 'Publish the application'
-  inputs:
-    command: 'publish'
-    publishWebProjects: true
-    projects: '**/*.csproj'
-    arguments: '--configuration $(buildConfiguration) --output $(Build.ArtifactStagingDirectory)'
+# - task: DotNetCoreCLI@2
+#   displayName: 'Publish the application'
+#   inputs:
+#     command: 'publish'
+#     publishWebProjects: true
+#     projects: '**/*.csproj'
+#     arguments: '--configuration $(buildConfiguration) --output $(Build.ArtifactStagingDirectory)'
     #zipAfterPublish: True
+- task: ArchiveFiles@2
+  displayName: 'Zip artifacts'
+  inputs:
+    rootFolderOrFile: '$(Build.ArtifactStagingDirectory)'
+    includeRootFolder: false
+    archiveType: 'zip'
+    archiveFile: '$(Build.ArtifactStagingDirectory)/published-app.zip'
+    replaceExistingArchive: true
 - task: PublishBuildArtifacts@1
   inputs:
     PathtoPublish: '$(Build.ArtifactStagingDirectory)'
