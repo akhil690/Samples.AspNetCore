@@ -30,9 +30,13 @@ steps:
     projects: '**/*.csproj'
     arguments: '--configuration Release'
     
-- script: dotnet publish --configuration Release --output $(Build.ArtifactStagingDirectory)
+- task: DotNetCoreCLI@2
   displayName: 'Publish the application'
-
+  inputs:
+    command: 'publish'
+    publishWebProjects: false
+    projects: '**/*.csproj'
+    arguments: '--configuration $(buildConfiguration) --output $(Build.ArtifactStagingDirectory)'
 - task: PublishBuildArtifacts@1
   inputs:
     PathtoPublish: '$(Build.ArtifactStagingDirectory)'
