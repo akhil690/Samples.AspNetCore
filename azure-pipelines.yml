@@ -41,7 +41,7 @@ steps:
 - task: ArchiveFiles@2
   displayName: 'Zip artifacts'
   inputs:
-    rootFolderOrFile: '(Build.SourcesDirectory)'
+    rootFolderOrFile: '$(Build.SourcesDirectory)'
     includeRootFolder: true
     archiveType: 'zip'
     archiveFile: '$(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip'
